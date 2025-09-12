@@ -1,6 +1,15 @@
-# React + Vite
+# Jack Sawyer Software intro website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple website built using [Vite](https://vitejs.dev/) and [React](https://reactjs.org/).
+It serves as an introduction to Jack Sawyer Software and provides links to various resources.
+
+## Upcoming Updates 
+This website is currently under development. Future updates will include:
+- Email address connected in the 'Contact' sectiions
+- Toggle to change background into DAY mode.
+
+
+## React + Vite
 
 Currently, two official plugins are available:
 
