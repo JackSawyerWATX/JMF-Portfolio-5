@@ -40,7 +40,7 @@ export const StarBackground = () => {
     <div
       className="fixed inset-0 overflow-hidden pointer-events-none z-0"
       style={{
-        backgroundImage: 'url("public/projects/SeattleIn16Bit_WEBSITE_USE_LARGE.jpg")', // Set image here
+        backgroundImage: 'url("projects/SeattleIn16Bit_WEBSITE_USE_LARGE.jpg")', // Set image here
         backgroundSize: "cover", 
         backgroundPosition: "center center",
         backgroundAttachment: "fixed", 
