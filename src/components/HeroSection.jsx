@@ -5,7 +5,6 @@ export const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Trigger visibility once the component mounts
     const timer = setTimeout(() => setIsVisible(true), 100); // Slight delay for smoothness
     return () => clearTimeout(timer);
   }, []);

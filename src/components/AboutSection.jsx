@@ -1,8 +1,5 @@
-// AboutSection.jsx
 import { Briefcase, Code, User } from "lucide-react";
 import { useEffect, useState } from "react";
-// If the PDF lives under src/assets:
-// import resumePDF from "../assets/resume.pdf";
 
 export const AboutSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -16,9 +13,8 @@ export const AboutSection = () => {
     <section id="about" className="py-24 px-4 relative">
       <div className="container mx-auto max-w-5xl">
         <h2
-          className={`text-3xl md:text-4xl font-bold mb-12 text-center ${
-            isVisible ? "opacity-100" : "opacity-0"
-          }`}
+          className={`text-3xl md:text-4xl font-bold mb-12 text-center ${isVisible ? "opacity-100" : "opacity-0"
+            }`}
         >
           <span className="text-shadow-lg/560">About</span>{" "}
           <span className="text-primary">Me</span>
@@ -49,10 +45,8 @@ export const AboutSection = () => {
                 <span>Let's Talk</span>
               </a>
 
-              {/* If file is in /public: use href="/resume.pdf" */}
               <a
                 href="src\assets\resume.pdf"
-                // href={resumePDF} // <- use this if you imported from src/assets
                 className="px-6 py-2 rounded-full border border-primary text-white hover:bg-primary/25 transition-colors duration-300 ease-in-out flex items-center justify-center gap-2 text-shadow-lg/560"
                 download="resume.pdf"
               >

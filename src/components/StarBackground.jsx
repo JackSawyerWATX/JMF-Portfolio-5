@@ -38,12 +38,17 @@ export const StarBackground = () => {
 
   return (
     <div
-      className="fixed inset-0 overflow-hidden pointer-events-none z-0"
+      className="
+        fixed inset-0 z-0 pointer-events-none
+        bg-no-repeat bg-scroll md:bg-fixed
+        bg-[position:center_60%] md:bg-center
+        bg-[length:180%_auto] sm:bg-[length:140%_auto] md:bg-cover
+        "
       style={{
-        backgroundImage: 'url("projects/SeattleIn16Bit_WEBSITE_USE_LARGE.jpg")', // Set image here
-        backgroundSize: "cover", 
-        backgroundPosition: "center center",
-        backgroundAttachment: "fixed", 
+        backgroundImage: 'url("projects/SeattleIn16Bit_WEBSITE_USE_LARGE.jpg")', // image set here
+        backgroundSize: "cover",
+        backgroundPosition: "center left",
+        backgroundAttachment: "fixed",
       }}
     >
       {meteors.map((meteor) => (
