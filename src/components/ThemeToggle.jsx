@@ -1,49 +1,14 @@
-import { Moon, Sun } from "lucide-react"
-import { useEffect, useState } from "react"
-import { cn } from "@/lib/utils";
-
+import { CloudRain, Sun } from "lucide-react";
+import { useEffect, useState } from "react";
 export const ThemeToggle = () => {
-  const [isDarkMode, setIsDarkMode] = useState(true)
-
+  const [rainy, setRainy] = useState(() => localStorage.getItem("theme") === "dark");
   useEffect(() => {
-    const storedTheme = localStorage.getItem("theme")
-    if (storedTheme === "dark") {
-      setIsDarkMode(true)
-      document.documentElement.classList.add("dark")
-    } else {
-      localStorage.setItem("theme", "light")
-      setIsDarkMode(false)
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    if (isDarkMode) {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-      setIsDarkMode(false);
-    } else {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-      setIsDarkMode(true);
-    }
-    // notify listeners
+    document.documentElement.classList.toggle("dark", rainy);
+    localStorage.setItem("theme", rainy ? "dark" : "light");
     window.dispatchEvent(new Event("themechange"));
-  };
-
-
-  return (
-    <button
-      onClick={toggleTheme}
-      className={cn("fixed max-sm:hidden top-2 right-5 z-50 p-2 rounded-full transition-colors duration-300",
-        "focus:outlin-hidden"
-      )}
-    >
-      {isDarkMode ? (
-        <Moon className="h-6 w-6 text-blue-900" />
-      ) : (
-        <Sun className="h-6 w-6 text-yellow-300" />
-      )}
-    </button>
-  );
+  }, [rainy]);
+  return <div className="weather-switch" role="group" aria-label="Seattle weather">
+    <button className={`site-button ${!rainy ? "button-primary" : "button-secondary"}`} onClick={() => setRainy(false)} aria-pressed={!rainy}><Sun size={15}/> <span>Sunny</span></button>
+    <button className={`site-button ${rainy ? "button-primary" : "button-secondary"}`} onClick={() => setRainy(true)} aria-pressed={rainy}><CloudRain size={15}/> <span>Rainy</span></button>
+  </div>;
 };
-

@@ -23,7 +23,7 @@ export const ContactSection = () => {
     setTimeout(() => {
       toast({
         title: "Message sent!",
-        description: "I have recieved your message and will reply to you soon.",
+        description: "Thank you for contacting Jack Sawyer Software.",
       });
       setIsSubmitting(false);
     }, 1000);
@@ -41,14 +41,14 @@ export const ContactSection = () => {
             Contact
           </span>{" "}
           <span className="text-primary">
-            Me
+            Us
           </span>
         </h2>
 
         <p className="text-center text-lg/6 text-shadow-lg/560 mb-12 max-w-2xl mx-auto">
-          I am always open to new opportunities and challenges. If you have any
-          questions or just want to say hi, feel free to reach out to me. I
-          will get back to you as soon as possible.
+          Discuss your business requirements with Jack Sawyer Software.
+          Share your project goals, scope, and timeline to start a conversation
+          about the right approach for your organization.
         </p>
 
         <div className="w-full flex justify-center">
@@ -60,7 +60,7 @@ export const ContactSection = () => {
                   Send
                 </span>{" "}
                 <span className="text-primary">
-                  Me
+                  Us
                 </span>{" "}
                 <span className="text-shadow-lg/560">
                   A Message
@@ -111,7 +111,7 @@ export const ContactSection = () => {
                     name="message"
                     required
                     className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary resize-none"
-                    placeholder="Your Message"
+                    placeholder="Tell us about your project"
                   />
                 </div>
 
@@ -119,7 +119,7 @@ export const ContactSection = () => {
                   type="submit"
                   disabled={isSubmitting}
                   className={cn(
-                    "cosmic-button w-full flex items-center justify-center gap-2 text-shadow-lg/560",
+                    "site-button button-primary w-full",
                     isSubmitting && "opacity-50 cursor-not-allowed"
                   )}
                 >

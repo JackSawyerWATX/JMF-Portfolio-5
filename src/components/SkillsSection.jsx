@@ -1,102 +1,88 @@
-import { useEffect, useState } from "react"
-import { cn } from "../lib/utils"
+import { useEffect, useRef, useState } from "react";
 
 const skills = [
-  // frontend
-  { name: "HTML/CSS", level: 95, catagory: "Frontend" },
-  { name: "JavaScript", level: 93, catagory: "Frontend" },
-  { name: "TypeScript", level: 80, catagory: "Frontend" },
-  { name: "SpringBoot", level: 70, catagory: "Frontend" },
-  { name: "Django", level: 65, catagory: "Frontend" },
-  { name: "Flask", level: 60, catagory: "Frontend" },
-  { name: "Next.JS", level: 80, catagory: "Frontend" },
+  // Frontend
+  { name: "HTML/CSS", level: 95, category: "Frontend" },
+  { name: "JavaScript", level: 93, category: "Frontend" },
+  { name: "TypeScript", level: 80, category: "Frontend" },
+  { name: "React", level: 90, category: "Frontend" },
+  { name: "Next.js", level: 80, category: "Frontend" },
+  { name: "Tailwind CSS", level: 85, category: "Frontend" },
+  { name: "React Router", level: 85, category: "Frontend" },
+  { name: "Radix UI", level: 75, category: "Frontend" },
+  { name: "Lucide React", level: 85, category: "Frontend" },
 
-  // backend
-  { name: "Python", level: 90, catagory: "Backend" },
-  { name: "Express.JS", level: 85, catagory: "Backend" },
-  { name: "Node.JS", level: 90, catagory: "Backend" },
-  { name: "Java", level: 60, catagory: "Backend" },
-  { name: "MongoDB", level: 80, catagory: "Backend" },
-  { name: "PostgreSQL", level: 70, catagory: "Backend" },
-  { name: "MySQL", level: 70, catagory: "Backend" },
+  // Backend
+  { name: "Python", level: 90, category: "Backend" },
+  { name: "Express.js", level: 85, category: "Backend" },
+  { name: "Node.js", level: 90, category: "Backend" },
+  { name: "Java", level: 60, category: "Backend" },
+  { name: "Spring Boot", level: 70, category: "Backend" },
+  { name: "Django", level: 65, category: "Backend" },
+  { name: "Flask", level: 60, category: "Backend" },
+  { name: "MongoDB", level: 80, category: "Backend" },
+  { name: "PostgreSQL", level: 70, category: "Backend" },
+  { name: "MySQL", level: 70, category: "Backend" },
 
-  // tools
-  { name: "Git/GitHub", level: 90, catagory: "Tools" },
-  { name: "Docker", level: 70, catagory: "Tools" },
-  { name: "VSCode", level: 90, catagory: "Tools" },
-  { name: "AWS", level: 75, catagory: "Tools" },
-  { name: "Postman", level: 60, catagory: "Tools" },
-  { name: "Figma", level: 60, catagory: "Tools" },
-  { name: "WSL", level: 50, catagory: "Tools" },
-]
+  // Tools
+  { name: "Git/GitHub", level: 90, category: "Tools" },
+  { name: "Vite", level: 85, category: "Tools" },
+  { name: "Docker", level: 70, category: "Tools" },
+  { name: "VS Code", level: 90, category: "Tools" },
+  { name: "AWS", level: 75, category: "Tools" },
+  { name: "Postman", level: 60, category: "Tools" },
+  { name: "Figma", level: 60, category: "Tools" },
+  { name: "WSL", level: 50, category: "Tools" },
+];
 
-const categories = ["all", "Frontend", "Backend", "Tools"]
+const categories = ["Frontend", "Backend", "Tools"];
 
-export const SkillsSection = () => {
+const TechnologyRow = ({ skill }) => {
+  const rowRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Trigger visibility once the component mounts
-    const timer = setTimeout(() => setIsVisible(true), 100); // Slight delay for smoothness
-    return () => clearTimeout(timer);
+    if (!("IntersectionObserver" in window)) {
+      setIsVisible(true);
+      return;
+    }
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setIsVisible(true);
+        observer.disconnect();
+      }
+    }, { threshold: 0.2 });
+    observer.observe(rowRef.current);
+    return () => observer.disconnect();
   }, []);
 
-  const [activeCatagory, setActiveCatagory] = useState("all")
+  return <li ref={rowRef} className="technology-row">
+    <div className="technology-label"><span>{skill.name}</span><span className="technology-percent">{skill.level}%</span></div>
+    <div className="technology-track" role="progressbar" aria-label={skill.name} aria-valuemin={0} aria-valuemax={100} aria-valuenow={skill.level}>
+      <div className="technology-fill" data-visible={isVisible} style={{ width: `${skill.level}%` }} />
+    </div>
+  </li>;
+};
 
-  const filteredSkills = skills.filter(
-    (skill) => activeCatagory === "all" || skill.catagory === activeCatagory)
+export const SkillsSection = () => {
+  const [activeCategory, setActiveCategory] = useState("All");
+  const visibleCategories = categories.filter(category => activeCategory === "All" || category === activeCategory);
 
-  return (
-    <section id="skills" className="py-24 px-4 relative bg-secondary/30 ">
-
-      <div className="container mx-auto max-w-5xl">
-        <h2 className={`text-3xl md:text-4xl font-bold mb-12 text-center  ${isVisible ? 'opacity-100' : 'opacity-0'
-          }`}>
-          <span className="text-primary">
-            My
-          </span>{" "}
-          <span className="text-shadow-lg/560">
-            Skills
-          </span>
-        </h2>
-
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((catagory, key) => (
-            <button
-              key={key}
-              onClick={() => setActiveCatagory(catagory)}
-              className={cn(
-                "px-5 py-2 rounded-full transition-colors duration-300 capitalize",
-                activeCatagory === catagory ?
-                  "bg-primary text-primary-foreground" :
-                  "bg-secondary/70 text-foreground hover:bd-secondary"
-              )}>{catagory}</button>
-          ))}
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredSkills.map((skill, key) => (
-            <div
-              key={key}
-              className="bg-card p-6 rounded-lg shadow-sm card-hover"
-            >
-              <div className="text-left mb-4">
-                <h3 className="font-semibold text-lg text-glow">{skill.name}</h3>
-                <div className="w-full bg-secondary/50 h-2 rounded-full overflow-hidden">
-                  <div className="bg-primary h-2 rounded-full origin-left animate-[grow_1.5s_ease-out]"
-                    style={{ width: skill.level + "%" }}
-                  />
-                </div>
-
-              </div>
-              <div className="text-right mt-1">
-                <span className="text-muted-foreground text-sm">{skill.level} % </span>
-              </div>
-            </div>
-          ))}
-        </div>
-
+  return <section id="skills" className="technologies-section py-24 px-4 relative">
+    <div className="container mx-auto max-w-5xl">
+      <h2 className="text-3xl md:text-4xl text-center"><span className="text-primary">Technology</span> Stack</h2>
+      <div className="technology-filters" role="group" aria-label="Filter technologies">
+        {["All", ...categories].map(category => <button className={`site-button ${activeCategory === category ? "button-primary" : "button-secondary"}`} key={category} type="button" aria-pressed={activeCategory === category} onClick={() => setActiveCategory(category)}>{category}</button>)}
       </div>
-    </section>
-  )
-}
+      <div className="technology-groups" data-filtered={activeCategory !== "All"}>
+        {visibleCategories.map(category => <div className="technology-group" key={`${activeCategory}-${category}`}>
+          <h3>{category}<span>{skills.filter(skill => skill.category === category).length}</span></h3>
+          <ul aria-label={`${category} technologies`}>
+            {skills.filter(skill => skill.category === category).map(skill => <TechnologyRow key={skill.name} skill={skill}/>)}
+          </ul>
+        </div>)}
+      </div>
+    </div>
+  </section>;
+};
+

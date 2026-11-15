@@ -1,4 +1,4 @@
-import { Briefcase, Code, User } from "lucide-react";
+import { ArrowUpRight, Briefcase, Code, User } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export const AboutSection = () => {
@@ -17,40 +17,34 @@ export const AboutSection = () => {
             }`}
         >
           <span className="text-shadow-lg/560">About</span>{" "}
-          <span className="text-primary">Me</span>
+          <span className="text-primary">Us</span>
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6 text-left">
             <h3 className="text-left text-2xl font-bold text-glow text-shadow-lg/560">
-              Full Stack Web Developer
+              Software Development for Business
             </h3>
 
             <p className="text-lg leading-6 text-shadow-lg/560">
-              I am a full stack web developer with a passion for creating dynamic and responsive web
-              applications. I have experience in both front-end and back-end development, and I am
-              constantly learning new technologies that allow me to bring ideas to life and solve
-              complex problems.
+              Jack Sawyer Software develops web applications and digital interfaces for business.
+              Our approach brings design and engineering together to turn operational needs
+              into practical, intuitive software.
             </p>
 
             <p className="text-lg leading-6 text-shadow-lg/560">
-              I specialize in building web applications using the latest JavaScript technologies
-              including Node.js, React.js, Express.js, PostgreSQL, and MongoDB. I am also
-              knowledgeable in Python and the Python libraries TensorFlow, Matplotlib, NumPy, and
-              Pandas for machine learning, data analysis, and visualizations.
+              Our capabilities span interface design, application development, and data integration.
+              We work with React, Node.js, Python, and relational and document databases
+              to build solutions around each projectâ€™s requirements.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="#contact" className="cosmic-button text-shadow-lg/560">
-                <span>Let's Talk</span>
+            <div className="flex flex-wrap items-center justify-center gap-7">
+              <a href="#contact" className="site-button button-primary">
+                <span>Contact Us</span><ArrowUpRight size={17}/>
               </a>
 
-              <a
-                href="src\assets\resume.pdf"
-                className="px-6 py-2 rounded-full border border-primary text-white hover:bg-primary/25 transition-colors duration-300 ease-in-out flex items-center justify-center gap-2 text-shadow-lg/560"
-                download="resume.pdf"
-              >
-                Download CV
+              <a href="#projects" className="site-button button-secondary">
+                View Our Work <ArrowUpRight size={16}/>
               </a>
             </div>
           </div>
@@ -64,7 +58,7 @@ export const AboutSection = () => {
                 <div className="text-left">
                   <h4 className="font-semibold text-lg text-glow">Web Development</h4>
                   <p className="text-muted-foreground">
-                    I create responsive websites using modern frameworks and libraries.
+                    We develop responsive websites and applications with modern web technologies.
                   </p>
                 </div>
               </div>
@@ -78,7 +72,7 @@ export const AboutSection = () => {
                 <div className="text-left">
                   <h4 className="font-semibold text-lg text-glow">UI/UX Design</h4>
                   <p className="text-muted-foreground">
-                    I design intuitive and visually appealing user interfaces for web applications.
+                    We design clear, accessible interfaces that support user needs and business objectives.
                   </p>
                 </div>
               </div>
@@ -92,8 +86,7 @@ export const AboutSection = () => {
                 <div className="text-left">
                   <h4 className="font-semibold text-lg text-glow">Project Management</h4>
                   <p className="text-muted-foreground">
-                    I manage projects using Agile methodologies to ensure on time and under budget
-                    completion.
+                    We coordinate delivery through defined milestones, clear communication, and iterative development.
                   </p>
                 </div>
               </div>
